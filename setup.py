@@ -1,12 +1,29 @@
-## ! DO NOT MANUALLY INVOKE THIS setup.py, USE CATKIN INSTEAD
+from setuptools import find_packages
+from setuptools import setup
 
-from distutils.core import setup
-from catkin_pkg.python_setup import generate_distutils_setup
+package_name = 'vector_ros_driver'
 
-# fetch values from package.xml
-setup_args = generate_distutils_setup(
+setup(
+    name=package_name,
+    version='2.0.0',
     packages=['vector_ros_driver'],
-    package_dir={'': 'src'}
+    install_requires=[
+        'setuptools',
+        'anki_vector',
+    ],
+    zip_safe=True,
+    author='beta_b0t',
+    author_email='beta_b0t@yahoo.com',
+    keywords=['ROS2', 'Anki Vector'],
+    description=(
+"""
+    Unofficial ROS 2 port of the anki vector robot driver
+"""
+    ),
+    license='MIT',
+    entry_points={
+        'console_scripts': [
+            'vector_node = nodes.vector_node:main',
+        ],
+    },
 )
-
-setup(**setup_args)

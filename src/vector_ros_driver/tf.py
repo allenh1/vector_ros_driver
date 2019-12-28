@@ -1,6 +1,4 @@
-#!/usr/bin/env python3.6
-
-import rospy
+import rclpy
 import anki_vector
 
 from sensor_msgs.msg import JointState

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3.6
 
-import rospy
+import rclpy
 import anki_vector
 import threading
 import os
@@ -13,11 +13,11 @@ from vector_ros_driver.camera import Camera
 from vector_ros_driver.behavior import Behavior
 from vector_ros_driver.tf import JointStatesPublisher
 
-if __name__=="__main__":
+def main(args):
     rospy.init_node("vector")
 
     # use mock robot object if required
-    if rospy.get_param("~use_mock", False):
+    if rclpy.get_param_or("use_mock", False):
         rospy.loginfo("using mock!")
         sys.path.append(os.path.join(os.path.dirname(__file__), "..", "test"))
         import mock_robot
@@ -45,3 +45,6 @@ if __name__=="__main__":
     tf_thread.start()
 
     rospy.spin()
+
+if __name__=="__main__":
+    sys.exit(main(sys.argv))
